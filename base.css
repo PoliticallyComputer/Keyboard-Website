@@ -1,1 +1,25 @@
 /***Yay for css***/ 
+.keyboard {
+	position:relative;
+	height:500px;
+	width: 700px;
+	margin: 0 auto;
+}
+
+.white-key {
+	position:absolute;
+	height:100%;
+	width:100px;
+	border-right:2px solid grey;
+	border-bottom:2px solid grey;
+	z-index: -1;
+	border-radius:10px;
+}
+
+.black-key {
+	position:absolute;
+	height:62%;
+	width: 50px;
+	background-color:black;
+	border-radius:2px;
+}
