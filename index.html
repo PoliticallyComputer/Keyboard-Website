@@ -1,12 +1,16 @@
 <html>
 <head>
-  <link rel="stylesheet" type="text/css" href="base.css"></link>
-  <title>dankiest eva</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="base.css"></link>
+    <title>dankiest eva</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="libraries/p5.js"></script>
+    <script src="libraries/p5.dom.js"></script>
+    <script src="libraries/p5.sound.js"></script>
+    <script src="thingie.js"></script>
 </head>
 <body>
 
@@ -15,32 +19,20 @@
     <h2>I don't actually know what's going on</h2>
   </div>
 
-  <div class="keyboard">
-	<div id="C" class="white-key" style="border-left:2px solid grey;" onclick="document.getElementById('CNote').play();"></div>
-	<div id="Csharp" class="black-key" style="left:60px" onclick="document.getElementById('CSharpNote').play();"></div>
-	<div id="D" class="white-key" style="left:100px" onclick="document.getElementById('DNote').play();"></div>
-	<div id= "Eb" class="black-key" style="left:190px" onclick="document.getElementById('EbNote').play();"></div>
-	<div id="E" class="white-key" style="left:200px; border-right:1px solid grey;" onclick="document.getElementById('ENote').play();"></div>
-	<div id="F" class="white-key" style="left:300px; border-left:1px solid grey;" onclick="document.getElementById('FNote').play();"></div>
-	<div id="Fsharp" class="black-key" style="left:360px" onclick="document.getElementById('FSharpNote').play();"></div>
-	<div id="G" class="white-key" style="left:400px" onclick="document.getElementById('GNote').play();"></div>
-	<div id="Ab" class="black-key" style="left:475px" onclick="document.getElementById('AbNote').play();"></div>
-	<div id="A" class="white-key" style="left:500px" onclick="document.getElementById('ANote').play();"></div>
-	<div id="Bb" class="black-key" style="left:590px" onclick="document.getElementById('BbNote').play();"></div>
-	<div id="B" class="white-key" style="left:600px; border-right:2px solid grey;" onclick="document.getElementById('BNote').play();"></div>
+  <div id="keys" class="keyboard">
+      <div id="C" class="white-key" style="border-left:2px solid grey;"></div>
+      <div id="D" class="white-key" style="left:100px"></div>
+      <div id="E" class="white-key" style="left:200px; border-right:1px solid grey;"></div>
+      <div id="F" class="white-key" style="left:300px; border-left:1px solid grey;"></div>
+      <div id="G" class="white-key" style="left:400px"></div>
+      <div id="A" class="white-key" style="left:500px"></div>
+      <div id="B" class="white-key" style="left:600px; border-right:2px solid grey;"></div>
+
+      <div id="Csharp" class="black-key" style="left:60px"></div>
+      <div id= "Dsharp" class="black-key" style="left:190px"></div>
+      <div id="Fsharp" class="black-key" style="left:360px"></div>
+      <div id="Gsharp" class="black-key" style="left:475px"></div>
+      <div id="Asharp" class="black-key" style="left:590px"></div>
   </div>
-  
-  <audio id="CNote" src="assets/146091__jamieblam__2c-hard.wav">
-  <audio id="CSharpNote" src="assets/146092__jamieblam__2c+-hard.wav">
-  <audio id="DNote" src="assets/146097__jamieblam__2d-hard.wav">
-  <audio id="EbNote" src="assets/146098__jamieblam__2d+-hard.wav">
-  <audio id="ENote" src="assets/146096__jamieblam__2e-hard.wav">
-  <audio id="FNote" src="assets/146100__jamieblam__2f-hard.wav">
-  <audio id="FSharpNote" src="assets/146095__jamieblam__2f+-hard.wav">
-  <audio id="GNote" src="assets/146089__jamieblam__2g-hard.wav">
-  <audio id="AbNote" src="assets/146099__jamieblam__2g+-hard.wav">
-  <audio id="ANote" src="assets/146094__jamieblam__2a-hard.wav">
-  <audio id="BbNote" src="assets/146086__jamieblam__2a+-hard.wav">
-  <audio id="BNote" src="assets/146093__jamieblam__2b-hard.wav">
 </body>
 </html>
