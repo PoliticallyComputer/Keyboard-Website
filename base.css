@@ -13,7 +13,14 @@
 	border-right:2px solid grey;
 	border-bottom:2px solid grey;
 	z-index=-1;
+	background-color:white;
 	border-radius:10px;
+}
+
+.white-key:active {
+
+	background-color:#DCDCDC;
+
 }
 
 .black-key {
@@ -22,4 +29,10 @@
 	width: 50px;
 	background-color:black;
 	border-radius:2px;
+}
+
+.black-key:active {
+
+	background-color:#3d3d3d;
+
 }

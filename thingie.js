@@ -8,22 +8,30 @@ function setup() {
     for(var i=0; i < divs.length; i++) {
         divs[i].style.cursor = 'hand';
 
-        divs[i].onmousedown = function() {
-            var env = new p5.Env();
-            env.setADSR(0.001, 0.25, 0.5, 0.5);
-            env.setRange(0.5, 0);
+		var env = new p5.Env(); //playable sound envelope 
+		env.setADSR(0.001, 0.25, 0.5, 0.5); //time until envelope reaches attack level, 
+											//...... decay level, 
+											//sustain, 
+											//duration of release time 
+		env.setRange(0.5, 0); //attack and release level (volume) when they are complete
+		env.setExp(false); //kinda pointless but can easily replicate the pedal being pushed if false?? idek
 
-            var wave = new p5.Oscillator('triangle');
-            wave.amp(env);
-            wave.start();
-            wave.freq(dict[this.id + "4"]);
-            env.triggerAttack();
-            envs[this.id] = env;
+		var wave = new p5.Oscillator('sine'); // wave going to be played
+		wave.amp(env);
+		wave.start();
+		
+		var divId = divs[i].id; //dict ids
+		wave.freq(dict[divId + "4"]);
+		envs[divId] = env;			
+		
+        divs[i].onmousedown = function() {
+            envs[this.id].triggerAttack();
             console.log(this.id);
         };
 
         divs[i].onmouseup = function() {
             envs[this.id].triggerRelease();
+			console.log(this.id);
         };
     }
 }
