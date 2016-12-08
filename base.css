@@ -16,7 +16,7 @@
 	border-radius:10px;
 }
 
-.white-key:active, .white-key:focus {
+.white-key:focus {
 
 	background-color:#DCDCDC;
 
@@ -30,7 +30,7 @@
 	border-radius:2px;
 }
 
-.black-key:active {
+.black-key:focus {
 
 	background-color:#3d3d3d;
 

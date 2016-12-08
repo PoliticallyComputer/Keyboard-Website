@@ -43,7 +43,7 @@ function setup() {
 
 
     //Any key is pressed
-    document.onkeypress = function() {
+    document.onkeypress = function(event) {
         myKeyPress(event);
     };
 
@@ -72,7 +72,7 @@ function setup() {
             console.log(note);
             if(note in dict){
                 keyPressed(note);
-                document.getElementById(note).click();
+                document.getElementById(note).focus();
             }
         }
     }
@@ -83,6 +83,7 @@ function setup() {
     function keyReleased() {
         for(var divId in envs){
             envs[divId].triggerRelease();
+	    document.getElementById(divId).blur();
         }
     }
     //mouse release
