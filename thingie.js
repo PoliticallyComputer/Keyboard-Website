@@ -28,10 +28,11 @@ function setup() {
             envs[this.id].triggerAttack();
             console.log(this.id);
         };
-
-        divs[i].onmouseup = function() {
-            envs[this.id].triggerRelease();
-			console.log(this.id);
-        };
     }
+	
+	document.onmouseup = function() {
+		for(var divId in envs){
+			envs[divId].triggerRelease();
+		}
+	};
 }
