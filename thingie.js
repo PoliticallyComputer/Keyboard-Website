@@ -24,15 +24,32 @@ function setup() {
 		wave.freq(dict[divId + "4"]);
 		envs[divId] = env;			
 		
-        divs[i].onmousedown = function() {
-            envs[this.id].triggerAttack();
+		//keyboard key is pressed. Will be used with mouse and computer keyboard
+		function keyPressed(e) {
+            envs[e].triggerAttack();
             console.log(this.id);
+		}
+		
+		//mouse click
+        divs[i].onmousedown = function() {
+            keyPressed(this.id);
         };
+		
+		
+
     }
 	
-	document.onmouseup = function() {
+	
+	// All the release functions independent of the div because they could of moved their mouse away before release
+	//keyboard key is released. Will be used with mouse and computer keyboard
+	function keyReleased() {
 		for(var divId in envs){
 			envs[divId].triggerRelease();
 		}
+	};
+	
+	//mouse release
+	document.onmouseup = function() {
+		keyReleased();
 	};
 }

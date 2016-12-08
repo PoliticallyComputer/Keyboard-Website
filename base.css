@@ -12,7 +12,6 @@
 	width:100px;
 	border-right:2px solid grey;
 	border-bottom:2px solid grey;
-	z-index=-1;
 	background-color:white;
 	border-radius:10px;
 }
