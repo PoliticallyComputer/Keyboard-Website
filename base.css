@@ -16,7 +16,7 @@
 	border-radius:10px;
 }
 
-.white-key:active {
+.white-key:active, .white-key:focus {
 
 	background-color:#DCDCDC;
 
