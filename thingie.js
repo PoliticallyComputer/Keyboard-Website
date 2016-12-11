@@ -1,12 +1,17 @@
 var dict = {C4:261.63, Csharp4:277.18, D4:293.66, Dsharp4:311.13, E4:329.23, F4:349.23,
-    Fsharp4:369.99, G4:392.00, Gsharp4:415.30, A4:440.00, Asharp4:466.16, B4:493.88};
+    Fsharp4:369.99, G4:392.00, Gsharp4:415.30, A4:440.00, Asharp4:466.16, B4:493.88, 
+	C5:523.25, Csharp5:554.37, D5:587.33, Dsharp5:622.25, E5:659.25, F5:698.46,
+    Fsharp5:739.99, G5:783.99, Gsharp5:830.61, A5:880.00, Asharp5:932.33, B5:987.77};
 
 var keys = {s:"C4", e:"Csharp4", d:"D4", r:"Dsharp4", f:"E4", g:"F4", y:"Fsharp4", h:"G4", u:"Gsharp4", j:"A4", i:"Asharp4", k:"B4"};
 
 var envs = {};
 
+
+
 function setup() {
-    var divs = document.getElementById("keys").getElementsByTagName("div");
+
+	var divs = document.getElementById("keys").getElementsByTagName("div");
 
     for(var i=0; i < divs.length; i++) {
         divs[i].style.cursor = 'hand';
@@ -17,7 +22,7 @@ function setup() {
                                             //sustain,
                                             //duration of release time
         env.setRange(0.5, 0); //attack and release level (volume) when they are complete
-        env.setExp(false); //kinda pointless but can easily replicate the pedal being pushed if false?? idek
+        /* env.setExp(false); //kinda pointless but can easily replicate the pedal being pushed if false?? idek */
 
         var wave = new p5.Oscillator('sine'); // wave going to be played
         wave.amp(env);
@@ -26,11 +31,12 @@ function setup() {
         var divId = divs[i].id; //dict ids
         wave.freq(dict[divId]); //changed the actual ids to include 4 bc its easier for right now but can change back later
         envs[divId] = env;
-
+		
+        console.log(divId);
+		
         //mouse click on the div
         divs[i].onmousedown = function() {
             keyPressed(this.id);
-            console.log(this.id);
         };
 
 

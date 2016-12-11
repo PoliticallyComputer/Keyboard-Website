@@ -2,14 +2,15 @@
 .keyboard {
 	position:relative;
 	height:500px;
-	width: 700px;
+	width:1120px;
 	margin: 0 auto;
+	text-align:center;
 }
 
 .white-key {
-	position:absolute;
+	float:left;
 	height:100%;
-	width:100px;
+	width:80px;
 	border-right:2px solid grey;
 	border-bottom:2px solid grey;
 	background-color:white;
