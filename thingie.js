@@ -23,28 +23,28 @@ var waveType;
 function setup() {
 
 	// create sliders
-	attackSlide = createSlider(0,0.01,0.001,0.001);
+	attackSlide = createSlider(0,5,0.25,0.25);
 	attackSlide.position(10, 10);
-	attackSlide.style('width', '80px');
+	attackSlide.style('width', '200px');
 	
 	
 	decaySlide = createSlider(0,1,0.25, 0.05);
 	decaySlide.position(10, 30);
-	decaySlide.style('width', '80px');
+	decaySlide.style('width', '200px');
 	
 	
 	sustainSlide = createSlider(0,1,0.5,0.1);
 	sustainSlide.position(10, 50);
-	sustainSlide.style('width', '80px');
+	sustainSlide.style('width', '200px');
 	
 	
 	releaseSlide = createSlider(0,1,0.5,0.1);
 	releaseSlide.position(10, 70);
-	releaseSlide.style('width', '80px');
+	releaseSlide.style('width', '200px');
 	
 	volumeSlide = createSlider(0.000001,1,0.5,0.1);
 	volumeSlide.position(10, 90);
-	volumeSlide.style('width', '80px');
+	volumeSlide.style('width', '200px');
 
 	// create select for wave type
     selectWave = createSelect();
@@ -115,9 +115,11 @@ function setup() {
     //Any key is pressed
     document.onkeypress = function(event) {
         myKeyPress(event);
+		var key = String.fromCharCode(keynum);
+        keyNote(key);
     };
 
-    document.onkeyup = function() {
+    document.onkeyup = function(event) {
         keyReleased();
     };
 
@@ -129,9 +131,7 @@ function setup() {
         } else if(e.which){ // Netscape/Firefox/Opera
             keynum = e.which;
         }
-
-        var key = String.fromCharCode(keynum);
-        keyNote(key);
+   
     }
 
 
@@ -149,15 +149,15 @@ function setup() {
 
 
     // All the release functions independent of the div because they could of moved their mouse away before release
-    //keyboard key is released. Will be used with mouse and computer keyboard
-    function keyReleased() {
-        for(var divId in envs){
-            envs[divId].triggerRelease();
-	    document.getElementById(divId).blur();
-        }
+    //keyboard key is released. Will be used with only computer keyboard
+    function keyReleased(key) {
+        
     }
     //mouse release
     document.onmouseup = function() {
-        keyReleased();
+       for(var divId in envs){
+            envs[divId].triggerRelease();
+	    document.getElementById(divId).blur();
+        }
     };
 	
