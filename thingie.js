@@ -76,7 +76,7 @@ function setup() {
 		
         //mouse click on the div
         divs[i].onmousedown = function() {
-            keyPressed(this.id);
+            keyPress(this.id);
         };
 
 
@@ -102,7 +102,7 @@ function setup() {
 	}
 
     //keyboard key is "pressed". Will be used with mouse and computer keyboard
-    function keyPressed(e) {
+    function keyPress(e) {
         envs[e].triggerAttack();
     }
 
@@ -136,7 +136,7 @@ function setup() {
             var note = keys[key];
             console.log(note);
             if(note in dict){
-                keyPressed(note);
+                keyPress(note);
                 document.getElementById(note).focus();
             }
         }
