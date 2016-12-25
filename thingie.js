@@ -3,7 +3,8 @@ var dict = {C4:261.63, Csharp4:277.18, D4:293.66, Dsharp4:311.13, E4:329.23, F4:
 	C5:523.25, Csharp5:554.37, D5:587.33, Dsharp5:622.25, E5:659.25, F5:698.46,
     Fsharp5:739.99, G5:783.99, Gsharp5:830.61, A5:880.00, Asharp5:932.33, B5:987.77};
 
-var keys = {s:"C4", e:"Csharp4", d:"D4", r:"Dsharp4", f:"E4", g:"F4", y:"Fsharp4", h:"G4", u:"Gsharp4", j:"A4", i:"Asharp4", k:"B4"};
+var keys = {s:"C4", e:"Csharp4", d:"D4", r:"Dsharp4", f:"E4", g:"F4", y:"Fsharp4", h:"G4", u:"Gsharp4", j:"A4",
+    i:"Asharp4", k:"B4"};
 
 var envs = {};
 
@@ -112,8 +113,8 @@ function setup() {
         myKeyPress(event);
     };
 
-    document.onkeyup = function() {
-        keyReleased();
+    document.onkeyup = function(event) {
+        keyRelease(event);
     };
 
     //returns which key was pressed
@@ -145,14 +146,27 @@ function setup() {
 
     // All the release functions independent of the div because they could of moved their mouse away before release
     //keyboard key is released. Will be used with mouse and computer keyboard
-    function keyReleased() {
-        for(var divId in envs){
-            envs[divId].triggerRelease();
-	    document.getElementById(divId).blur();
+    function keyRelease(e) {
+        var keynum;
+        if(window.event) { // IE
+            keynum = e.keyCode;
+        } else if(e.which){ // Netscape/Firefox/Opera
+            keynum = e.which;
+        }
+
+        var key = String.fromCharCode(keynum).toLowerCase();
+        console.log(key);
+        if (key in keys) {
+            var note = keys[key];
+            envs[note].triggerRelease();
         }
     }
+
     //mouse release
     document.onmouseup = function() {
-        keyReleased();
+        for(var divId in envs){
+            envs[divId].triggerRelease();
+            document.getElementById(divId).blur();
+        }
     };
 	
