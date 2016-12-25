@@ -11,6 +11,8 @@ var attack, decay, sustain, release;
 
 var attackSlide, decaySlide, sustainSlide, releaseSlide;
 
+var waveType;
+
 
 function setup() {
 
