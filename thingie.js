@@ -7,9 +7,29 @@ var keys = {s:"C4", e:"Csharp4", d:"D4", r:"Dsharp4", f:"E4", g:"F4", y:"Fsharp4
 
 var envs = {};
 
+var attack, decay, sustain, release;
+
+var attackSlide, decaySlide, sustainSlide, releaseSlide;
 
 
 function setup() {
+
+	// create sliders
+	attackSlide = createSlider(0,0.01,0.001,0.001);
+	attackSlide.position(10, 10);
+	attackSlide.style('width', '80px');
+	
+	decaySlide = createSlider(0,1,0.25, 0.05);
+	decaySlide.position(30, 10);
+	decaySlide.style('width', '80px');
+	
+	sustainSlide = createSlider(0,1,0.5,0.1);
+	sustainSlide.position(50, 10);
+	sustainSlide.style('width', '80px');
+	
+	releaseSlide = createSlider(0,1,0.5,0.1);
+	releaseSlide.position(70, 10);
+	releaseSlide.style('width', '80px');
 
 	var divs = document.getElementById("keys").getElementsByTagName("div");
 
@@ -40,7 +60,8 @@ function setup() {
         };
 
 
-    }
+		}
+	}
 
     //keyboard key is "pressed". Will be used with mouse and computer keyboard
     function keyPressed(e) {
@@ -96,4 +117,4 @@ function setup() {
     document.onmouseup = function() {
         keyReleased();
     };
-}
+	
