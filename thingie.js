@@ -9,6 +9,8 @@ var envs = {};
 
 var waves = [];
 
+var divs;
+
 var attack, decay, sustain, release;
 
 var attackSlide, decaySlide, sustainSlide, releaseSlide;
@@ -48,7 +50,7 @@ function setup() {
     selectWave.option('square');
 
 
-	var divs = document.getElementById("keys").getElementsByTagName("div");
+	divs = document.getElementById("keys").getElementsByTagName("div");
 
     for(var i=0; i < divs.length; i++) {
         divs[i].style.cursor = 'hand';
@@ -87,9 +89,8 @@ function setup() {
 		sustain = sustainSlide.value();
 		release = releaseSlide.value();
 		
-		for (var i = 0; i < envs.length; i++ ){
-		
-		help
+		for (var i = 0; i < divs.length; i++ ){
+			envs[divs[i].id].setADSR(attack, decay, sustain, release);
 		}
 
         waveType = selectWave.value();
