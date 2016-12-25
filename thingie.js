@@ -6,6 +6,8 @@ var dict = {C4:261.63, Csharp4:277.18, D4:293.66, Dsharp4:311.13, E4:329.23, F4:
 var keys = {s:"C4", e:"Csharp4", d:"D4", r:"Dsharp4", f:"E4", g:"F4", y:"Fsharp4", h:"G4", u:"Gsharp4", j:"A4",
     i:"Asharp4", k:"B4"};
 
+var pressed = [];
+
 var envs = {};
 
 var waves = [];
@@ -127,13 +129,20 @@ function setup() {
         }
 
         var key = String.fromCharCode(keynum);
-        keyNote(key);
+
+        if((pressed.indexOf(key) == -1)) {
+            console.log(key);
+            console.log(!(key in pressed));
+            console.log(pressed);
+            keyNote(key);
+        }
     }
 
 
     //Given a key, if it refers to a key on the board, do stuff
     function keyNote(key){
         if(key in keys){
+            pressed.push(key);
             var note = keys[key];
             console.log(note);
             if(note in dict){
@@ -157,6 +166,10 @@ function setup() {
         var key = String.fromCharCode(keynum).toLowerCase();
         console.log(key);
         if (key in keys) {
+            if(!(pressed.indexOf(key) == -1)) {
+                var index = pressed.indexOf(key);
+                pressed.splice(index, 1);
+            }
             var note = keys[key];
             envs[note].triggerRelease();
         }
