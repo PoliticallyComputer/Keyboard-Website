@@ -116,8 +116,6 @@ function setup() {
     //Any key is pressed
     document.onkeypress = function(event) {
         myKeyPress(event);
-		var key = String.fromCharCode(keynum);
-        keyNote(key);
     };
 
     document.onkeyup = function(event) {
@@ -133,6 +131,8 @@ function setup() {
             keynum = e.which;
         }
    
+		var key = String.fromCharCode(keynum);
+        keyNote(key);
     }
 
 
