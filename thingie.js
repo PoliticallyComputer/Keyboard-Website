@@ -7,11 +7,17 @@ var keys = {s:"C4", e:"Csharp4", d:"D4", r:"Dsharp4", f:"E4", g:"F4", y:"Fsharp4
 
 var envs = {};
 
+var waves = [];
+
 var divs;
 
 var attack, decay, sustain, release, volume;
 
 var attackSlide, decaySlide, sustainSlide, releaseSlide, volumeSlide;
+
+var selectWave;
+
+var waveType;
 
 
 function setup() {
@@ -39,7 +45,13 @@ function setup() {
 	volumeSlide = createSlider(0.000001,1,0.5,0.1);
 	volumeSlide.position(10, 90);
 	volumeSlide.style('width', '80px');
-	
+
+	// create select for wave type
+    selectWave = createSelect();
+    selectWave.option('sine');
+    selectWave.option('triangle');
+    selectWave.option('sawtooth');
+    selectWave.option('square');
 
 	divs = document.getElementById("keys").getElementsByTagName("div");
 
@@ -57,6 +69,7 @@ function setup() {
         var wave = new p5.Oscillator('sine'); // wave going to be played
         wave.amp(env);
         wave.start();
+        waves.push(wave);
 
         var divId = divs[i].id; //dict ids
         wave.freq(dict[divId]); //changed the actual ids to include 4 bc its easier for right now but can change back later
@@ -85,6 +98,12 @@ function setup() {
 			envs[divs[i].id].setADSR(attack, decay, sustain, release);
 			envs[divs[i].id].setRange(volume, 0);
 			}
+
+        waveType = selectWave.value();
+
+        for (var j = 0; j < waves.length; j++) {
+            waves[j].setType(waveType);
+        }
 	}
 
     //keyboard key is "pressed". Will be used with mouse and computer keyboard
