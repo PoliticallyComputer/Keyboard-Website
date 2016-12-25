@@ -19,17 +19,21 @@ function setup() {
 	attackSlide.position(10, 10);
 	attackSlide.style('width', '80px');
 	
+	
 	decaySlide = createSlider(0,1,0.25, 0.05);
-	decaySlide.position(30, 10);
+	decaySlide.position(10, 30);
 	decaySlide.style('width', '80px');
 	
+	
 	sustainSlide = createSlider(0,1,0.5,0.1);
-	sustainSlide.position(50, 10);
+	sustainSlide.position(10, 50);
 	sustainSlide.style('width', '80px');
 	
+	
 	releaseSlide = createSlider(0,1,0.5,0.1);
-	releaseSlide.position(70, 10);
+	releaseSlide.position(10, 70);
 	releaseSlide.style('width', '80px');
+	
 
 	var divs = document.getElementById("keys").getElementsByTagName("div");
 
@@ -37,7 +41,7 @@ function setup() {
         divs[i].style.cursor = 'hand';
 
         var env = new p5.Env(); //playable sound envelope
-        env.setADSR(0.001, 0.25, 0.5, 0.5); //time until envelope reaches attack level,
+        env.setADSR(attack, decay, sustain, release); //time until envelope reaches attack level,
                                             //...... decay level,
                                             //sustain,
                                             //duration of release time
@@ -61,6 +65,19 @@ function setup() {
 
 
 		}
+	}
+	
+	function draw(){
+		attack = attackSlide.value();
+		decay = decaySlide.value();
+		sustain = sustainSlide.value();
+		release = releaseSlide.value();
+		
+		for (var i = 0; i < envs.length; i++ ){
+		
+		help
+		}
+	
 	}
 
     //keyboard key is "pressed". Will be used with mouse and computer keyboard
