@@ -9,9 +9,9 @@ var envs = {};
 
 var divs;
 
-var attack, decay, sustain, release;
+var attack, decay, sustain, release, volume;
 
-var attackSlide, decaySlide, sustainSlide, releaseSlide;
+var attackSlide, decaySlide, sustainSlide, releaseSlide, volumeSlide;
 
 
 function setup() {
@@ -36,6 +36,10 @@ function setup() {
 	releaseSlide.position(10, 70);
 	releaseSlide.style('width', '80px');
 	
+	volumeSlide = createSlider(0.000001,1,0.5,0.1);
+	volumeSlide.position(10, 90);
+	volumeSlide.style('width', '80px');
+	
 
 	divs = document.getElementById("keys").getElementsByTagName("div");
 
@@ -47,7 +51,7 @@ function setup() {
                                             //...... decay level,
                                             //sustain,
                                             //duration of release time
-        env.setRange(0.5, 0); //attack and release level (volume) when they are complete
+        env.setRange(volume, 0); //attack and release level (volume) when they are complete
         /* env.setExp(false); //kinda pointless but can easily replicate the pedal being pushed if false?? idek */
 
         var wave = new p5.Oscillator('sine'); // wave going to be played
@@ -62,7 +66,7 @@ function setup() {
 		
         //mouse click on the div
         divs[i].onmousedown = function() {
-            keyPressed(this.id);
+            keyPress(this.id);
         };
 
 
@@ -75,14 +79,16 @@ function setup() {
 		sustain = sustainSlide.value();
 		release = releaseSlide.value();
 		
+		volume = volumeSlide.value();
+		
 		for (var i = 0; i < divs.length; i++ ){
 			envs[divs[i].id].setADSR(attack, decay, sustain, release);
-		}
-	
+			envs[divs[i].id].setRange(volume, 0);
+			}
 	}
 
     //keyboard key is "pressed". Will be used with mouse and computer keyboard
-    function keyPressed(e) {
+    function keyPress(e) {
         envs[e].triggerAttack();
     }
 
@@ -116,7 +122,7 @@ function setup() {
             var note = keys[key];
             console.log(note);
             if(note in dict){
-                keyPressed(note);
+                keyPress(note);
                 document.getElementById(note).focus();
             }
         }
