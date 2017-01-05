@@ -1,4 +1,4 @@
-/***Yay for css***/ 
+/***Yay for css***/
 .keyboard {
 	position:relative;
 	/*top: 50%;*/
@@ -23,23 +23,11 @@ body {
 	border-radius:10px;
 }
 
-.white-key:focus {
-
-	background-color:#DCDCDC;
-
-}
 
 .black-key {
 	position:absolute;
 	height:62%;
 	width: 50px;
 	border:2px solid grey;
-	background-color:black;
-	border-radius:2px;
-}
-
-.black-key:focus {
-
-	background-color:#3d3d3d;
-
+	background-color: rgb(0, 0, 0, 0);
 }
