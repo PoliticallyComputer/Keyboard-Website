@@ -14,9 +14,9 @@ var waves = [];
 
 var divs;
 
-var attack, decay, sustain, release;
+var attack, decay, sustain, release, volume;
 
-var attackSlide, decaySlide, sustainSlide, releaseSlide;
+var attackSlide, decaySlide, sustainSlide, releaseSlide, volumeSlide;
 
 var selectWave;
 
@@ -26,26 +26,30 @@ var waveType;
 function setup() {
 
 	// create sliders
-	attackSlide = createSlider(0,0.01,0.001,0.001);
+	attackSlide = createSlider(0,5,0.25,0.1);
 	attackSlide.position(10, 10);
-	attackSlide.style('width', '80px');
-	
-	
+	attackSlide.style('width', '200px');
+
+
 	decaySlide = createSlider(0,1,0.25, 0.05);
 	decaySlide.position(10, 30);
-	decaySlide.style('width', '80px');
-	
-	
+	decaySlide.style('width', '200px');
+
+
 	sustainSlide = createSlider(0,1,0.5,0.1);
 	sustainSlide.position(10, 50);
-	sustainSlide.style('width', '80px');
-	
-	
+	sustainSlide.style('width', '200px');
+
+
 	releaseSlide = createSlider(0,1,0.5,0.1);
 	releaseSlide.position(10, 70);
-	releaseSlide.style('width', '80px');
+	releaseSlide.style('width', '200px');
 
-	// create select for wave type
+	volumeSlide = createSlider(0.000001,1,0.5,0.1);
+	volumeSlide.position(10, 90);
+	volumeSlide.style('width', '200px');
+
+    // create select for wave type
     selectWave = createSelect();
     selectWave.option('sine');
     selectWave.option('triangle');
@@ -63,7 +67,7 @@ function setup() {
                                             //...... decay level,
                                             //sustain,
                                             //duration of release time
-        env.setRange(0.5, 0); //attack and release level (volume) when they are complete
+        env.setRange(volume, 0); //attack and release level (volume) when they are complete
         /* env.setExp(false); //kinda pointless but can easily replicate the pedal being pushed if false?? idek */
 
         var wave = new p5.Oscillator('sine'); // wave going to be played
@@ -92,16 +96,18 @@ function setup() {
 		sustain = sustainSlide.value();
 		release = releaseSlide.value();
 		
+		volume = volumeSlide.value();
+		
 		for (var i = 0; i < divs.length; i++ ){
 			envs[divs[i].id].setADSR(attack, decay, sustain, release);
-		}
+			envs[divs[i].id].setRange(volume, 0);
+			}
 
         waveType = selectWave.value();
 
         for (var j = 0; j < waves.length; j++) {
             waves[j].setType(waveType);
         }
-
 	}
 
     //keyboard key is "pressed". Will be used with mouse and computer keyboard

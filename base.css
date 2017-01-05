@@ -1,10 +1,16 @@
 /***Yay for css***/ 
 .keyboard {
 	position:relative;
+	/*top: 50%;*/
+	transform: translateY(25%);
 	height:500px;
-	width:560px;
+	width:580px;
 	margin: 0 auto;
 	text-align:center;
+}
+
+body {
+	background-color:black;
 }
 
 .white-key {
