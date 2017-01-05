@@ -19,7 +19,7 @@ body {
 	width:80px;
 	border-right:2px solid grey;
 	border-bottom:2px solid grey;
-	background-color:transparent;
+	/*background-color:transparent;*/
 	border-radius:10px;
 }
 
@@ -34,7 +34,7 @@ body {
 	height:62%;
 	width: 50px;
 	border:2px solid grey;
-	background-color:black;
+	/*background-color:black;*/
 	border-radius:2px;
 }
 

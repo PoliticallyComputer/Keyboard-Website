@@ -12,6 +12,8 @@ var envs = {};
 
 var waves = [];
 
+var amps = [];
+
 var divs;
 
 var attack, decay, sustain, release, volume;
@@ -75,6 +77,10 @@ function setup() {
         wave.start();
         waves.push(wave);
 
+        var amp = new p5.Amplitude();
+        amp.setInput(env);
+        amps.push(amp);
+
         var divId = divs[i].id; //dict ids
         wave.freq(dict[divId]); //changed the actual ids to include 4 bc its easier for right now but can change back later
         envs[divId] = env;
@@ -95,18 +101,16 @@ function setup() {
 		decay = decaySlide.value();
 		sustain = sustainSlide.value();
 		release = releaseSlide.value();
-		
 		volume = volumeSlide.value();
+
+        waveType = selectWave.value();
 		
 		for (var i = 0; i < divs.length; i++ ){
 			envs[divs[i].id].setADSR(attack, decay, sustain, release);
 			envs[divs[i].id].setRange(volume, 0);
-			}
-
-        waveType = selectWave.value();
-
-        for (var j = 0; j < waves.length; j++) {
-            waves[j].setType(waveType);
+            waves[i].setType(waveType);
+            // var level = amps[i].getLevel();
+            divs[i].style.color="white";
         }
 	}
 
