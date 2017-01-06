@@ -47,7 +47,7 @@ function setup() {
 	releaseSlide.position(10, 70);
 	releaseSlide.style('width', '200px');
 
-	volumeSlide = createSlider(0.000001,1,0.5,0.1);
+	volumeSlide = createSlider(0.1,1,0.5,0.1);
 	volumeSlide.position(10, 90);
 	volumeSlide.style('width', '200px');
 
@@ -109,8 +109,11 @@ function setup() {
 			envs[divs[i].id].setADSR(attack, decay, sustain, release);
 			envs[divs[i].id].setRange(volume, 0);
             waves[i].setType(waveType);
-            // var level = amps[i].getLevel();
-            divs[i].style.color="white";
+            var level = amps[i].getLevel();
+            // console.log(level);
+            var color = Math.round(map(level, 0, 1, 0, 255));
+            // console.log(color);
+            divs[i].style.backgroundColor="rgb(" + color + "," + color + "," + color + ")";
         }
 	}
 
