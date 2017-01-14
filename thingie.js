@@ -24,32 +24,74 @@ var selectWave;
 
 var waveType;
 
+var attackBlack, decayBlack, sustainBlack, releaseBlack;
+
+
 
 function setup() {
 
 	// create sliders
-	attackSlide = createSlider(0,5,0.25,0.1);
-	attackSlide.position(10, 10);
-	attackSlide.style('width', '200px');
 
+	var attackOutline = document.getElementById("attackOutline");
+	var rectAtt = attackOutline.getBoundingClientRect();
+	attackBlack = document.getElementById("attackBlack");
+
+	attackSlide = createSlider(0,5,0.25,0.1);
+	attackSlide.position(rectAtt.left - 12, rectAtt.top);
+	attackSlide.style('width', (attackOutline.clientWidth + 5) + "px");
+	attackSlide.style('height', (attackOutline.clientHeight + 1) + "px");
+	attackSlide.style('opacity', '0');
+
+
+	
+
+
+	var decayOutline = document.getElementById("decayOutline");
+	var rectDec = decayOutline.getBoundingClientRect();
+	decayBlack = document.getElementById("decayBlack");
 
 	decaySlide = createSlider(0,1,0.25, 0.05);
-	decaySlide.position(10, 30);
-	decaySlide.style('width', '200px');
+	decaySlide.position(rectDec.left - 12, rectDec.top);
+	decaySlide.style('width', (decayOutline.clientWidth + 5) + "px");
+	decaySlide.style('height', (decayOutline.clientHeight + 1) + "px");
+	decaySlide.style('opacity', '0');
 
+
+	var sustainOutline = document.getElementById("sustainOutline");
+	var rectSus = sustainOutline.getBoundingClientRect();
+	sustainBlack = document.getElementById("sustainBlack");
 
 	sustainSlide = createSlider(0,1,0.5,0.1);
-	sustainSlide.position(10, 50);
-	sustainSlide.style('width', '200px');
+	sustainSlide.position(rectSus.left - 12, rectSus.top);
+	sustainSlide.style('width', (sustainOutline.clientWidth + 5) + "px");
+	sustainSlide.style('height', (sustainOutline.clientHeight + 1) + "px");
+	sustainSlide.style('opacity', '0');
 
+
+
+	var releaseOutline = document.getElementById("releaseOutline");
+	var rectRel = releaseOutline.getBoundingClientRect();
+	releaseBlack = document.getElementById("releaseBlack");
 
 	releaseSlide = createSlider(0,1,0.5,0.1);
-	releaseSlide.position(10, 70);
-	releaseSlide.style('width', '200px');
+	releaseSlide.position(rectRel.left - 12, rectRel.top);
+	releaseSlide.style('width', (releaseOutline.clientWidth + 5) + "px");
+	releaseSlide.style('height', (releaseOutline.clientHeight + 1) + "px");
+	releaseSlide.style('opacity', '0');
+
+
+	var volumeOutline = document.getElementById("volumeOutline");
+	var rectVol = volumeOutline.getBoundingClientRect();
+	volumeBlack = document.getElementById("volumeBlack");
+
+	
 
 	volumeSlide = createSlider(0.1,1,0.5,0.1);
-	volumeSlide.position(10, 90);
-	volumeSlide.style('width', '200px');
+	volumeSlide.position(rectVol.left - 12, rectVol.top);
+
+	volumeSlide.style('width', (volumeOutline.clientWidth + 5) + "px");
+	volumeSlide.style('height', (volumeOutline.clientHeight + 1) + "px");
+	volumeSlide.style('opacity', '0');
 
     // create select for wave type
     selectWave = createSelect();
@@ -111,10 +153,31 @@ function setup() {
             waves[i].setType(waveType);
             var level = amps[i].getLevel();
             // console.log(level);
-            var color = Math.round(map(level, 0, 1, 0, 255));
+            var color;
+	    if (divs[i].className == 'black-key' ) {
+		color = 255 - Math.round(map(level, 0, 1, 0, 255));
+	    } else {
+            	color = Math.round(map(level, 0, 1, 0, 255));
+	    }
             // console.log(color);
             divs[i].style.backgroundColor="rgb(" + color + "," + color + "," + color + ")";
         }
+
+
+	var attackMap = map(attack, 0, 5, 0, attackSlide.elt.style.width.slice(0, -2));
+	attackBlack.style.clip = "rect(0, "+ attackMap + "px, " + attackSlide.elt.style.height + ", 0)";
+
+	var sustainMap = map(sustain, 0, 1, 0, sustainSlide.elt.style.width.slice(0, -2));
+	sustainBlack.style.clip = "rect(0, "+ sustainMap + "px, " + sustainSlide.elt.style.height + ", 0)";
+
+	var decayMap = map(decay, 0, 1, 0, decaySlide.elt.style.width.slice(0, -2));
+	decayBlack.style.clip = "rect(0, "+ decayMap + "px, " + decaySlide.elt.style.height + ", 0)";
+
+	var releaseMap = map(release, 0, 1, 0, releaseSlide.elt.style.width.slice(0, -2));
+	releaseBlack.style.clip = "rect(0, "+ releaseMap + "px, " + releaseSlide.elt.style.height + ", 0)";
+
+	var volumeMap = map(volume, 0, 1, 0, volumeSlide.elt.style.width.slice(0, -2));
+	volumeBlack.style.clip = "rect(0, "+ volumeMap + "px, " + volumeSlide.elt.style.height + ", 0)";
 	}
 
     //keyboard key is "pressed". Will be used with mouse and computer keyboard
