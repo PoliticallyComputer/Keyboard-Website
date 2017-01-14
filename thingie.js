@@ -104,7 +104,7 @@ function setup() {
 	divs = document.getElementById("keys").getElementsByTagName("div");
 
     for(var i=0; i < divs.length; i++) {
-        divs[i].style.cursor = 'hand';
+        divs[i].style.cursor = 'pointer';
 
         var env = new p5.Env(); //playable sound envelope
         env.setADSR(attack, decay, sustain, release); //time until envelope reaches attack level,
