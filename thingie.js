@@ -75,7 +75,6 @@ function setup() {
         var wave = new p5.Oscillator('sine'); // wave going to be played
         wave.amp(env);
         wave.start();
-        waves.push(wave);
 
         var amp = new p5.Amplitude();
         amp.setInput(env);
@@ -84,8 +83,8 @@ function setup() {
         var divId = divs[i].id; //dict ids
         wave.freq(dict[divId]); //changed the actual ids to include 4 bc its easier for right now but can change back later
         envs[divId] = env;
-		
-        console.log(divId);
+
+        waves.push(wave);
 		
         //mouse click on the div
         divs[i].onmousedown = function() {
@@ -104,15 +103,13 @@ function setup() {
 		volume = volumeSlide.value();
 
         waveType = selectWave.value();
-		
+
 		for (var i = 0; i < divs.length; i++ ){
 			envs[divs[i].id].setADSR(attack, decay, sustain, release);
 			envs[divs[i].id].setRange(volume, 0);
             waves[i].setType(waveType);
             var level = amps[i].getLevel();
-            // console.log(level);
             var color = Math.round(map(level, 0, 1, 0, 255));
-            // console.log(color);
             divs[i].style.backgroundColor="rgb(" + color + "," + color + "," + color + ")";
         }
 	}
@@ -144,9 +141,6 @@ function setup() {
         var key = String.fromCharCode(keynum);
 
         if((pressed.indexOf(key) == -1)) {
-            console.log(key);
-            console.log(!(key in pressed));
-            console.log(pressed);
             keyNote(key);
         }
     }
