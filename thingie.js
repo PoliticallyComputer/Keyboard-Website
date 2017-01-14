@@ -75,6 +75,7 @@ function setup() {
   attackSlide.style('width', (attackOutline.clientWidth + 5) + "px");
   attackSlide.style('height', (attackOutline.clientHeight + 1) + "px");
   attackSlide.style('opacity', '0');
+  attackSlide.style('cursor', 'pointer');
 
 
 
@@ -87,6 +88,7 @@ function setup() {
   decaySlide.style('width', (decayOutline.clientWidth + 5) + "px");
   decaySlide.style('height', (decayOutline.clientHeight + 1) + "px");
   decaySlide.style('opacity', '0');
+  decaySlide.style('cursor', 'pointer');
 
 
   var sustainOutline = document.getElementById("sustainOutline");
@@ -98,6 +100,7 @@ function setup() {
   sustainSlide.style('width', (sustainOutline.clientWidth + 5) + "px");
   sustainSlide.style('height', (sustainOutline.clientHeight + 1) + "px");
   sustainSlide.style('opacity', '0');
+  sustainSlide.style('cursor', 'pointer');
 
 
 
@@ -110,6 +113,7 @@ function setup() {
   releaseSlide.style('width', (releaseOutline.clientWidth + 5) + "px");
   releaseSlide.style('height', (releaseOutline.clientHeight + 1) + "px");
   releaseSlide.style('opacity', '0');
+  releaseSlide.style('cursor', 'pointer');
 
 
   var volumeOutline = document.getElementById("volumeOutline");
@@ -124,6 +128,7 @@ function setup() {
   volumeSlide.style('width', (volumeOutline.clientWidth + 5) + "px");
   volumeSlide.style('height', (volumeOutline.clientHeight + 1) + "px");
   volumeSlide.style('opacity', '0');
+  volumeSlide.style('cursor', 'pointer');
 
   // create select for wave type
   selectWave = createSelect();
@@ -136,7 +141,7 @@ function setup() {
   divs = document.getElementById("keys").getElementsByTagName("div");
 
   for (var i = 0; i < divs.length; i++) {
-    divs[i].style.cursor = 'hand';
+    divs[i].style.cursor = 'pointer';
 
     var env = new p5.Env(); //playable sound envelope
     env.setADSR(attack, decay, sustain, release); //time until envelope reaches attack level,
