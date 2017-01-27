@@ -3,3 +3,5 @@ This is a keyboard synthesizer website. The keyboard has one octave, and can be 
 Note: at this point the keyboard is not fully functional in chrome. We recommend using Firefox instead.
 
 This project is by Diadem Shoukralla and Ismael Ghanim.
+
+https://politicallycomputer.github.io/Keyboard-Website/
