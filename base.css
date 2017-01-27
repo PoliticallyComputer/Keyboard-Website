@@ -1,7 +1,12 @@
 /***Yay for css***/
-.keyboard {
+@font-face {
+	font-family: ourFont;
+	src: url(Odin_Rounded_Bold.otf);
+	font-weight: bolder;
+}
+
+#keys {
 	position:relative;
-	/*top: 50%;*/
 	transform: translateY(25%);
 	height:500px;
 	width:580px;
@@ -10,7 +15,14 @@
 }
 
 body {
-	background-color:black;
+	background-color: white;
+	font-family: ourFont;
+	-webkit-text-stroke: 1px black;
+}
+
+svg {
+  max-height: 400px;
+  margin: -3em;
 }
 
 .white-key {
