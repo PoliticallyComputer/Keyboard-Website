@@ -140,37 +140,43 @@ function setup() {
 
   divs = document.getElementById("keys").getElementsByTagName("div");
 
-  for (var i = 0; i < divs.length; i++) {
-    divs[i].style.cursor = 'pointer';
+  var isChrome = !!window.chrome && !!window.chrome.webstore;
 
-    var env = new p5.Env(); //playable sound envelope
-    env.setADSR(attack, decay, sustain, release); //time until envelope reaches attack level,
-    //...... decay level,
-    //sustain,
-    //duration of release time
-    env.setRange(volume, 0); //attack and release level (volume) when they are complete
-    /* env.setExp(false); //kinda pointless but can easily replicate the pedal being pushed if false?? idek */
+      for (var i = 0; i < divs.length; i++) {
+          divs[i].style.cursor = 'pointer';
 
-    var wave = new p5.Oscillator('sine'); // wave going to be played
-    wave.amp(env);
-    wave.start();
-    waves.push(wave);
+          var env = new p5.Env(); //playable sound envelope
+          env.setADSR(attack, decay, sustain, release); //time until envelope reaches attack level,
+          //...... decay level,
+          //sustain,
+          //duration of release time
+          env.setRange(volume, 0); //attack and release level (volume) when they are complete
+        /* env.setExp(false); //kinda pointless but can easily replicate the pedal being pushed if false?? idek */
 
-    var amp = new p5.Amplitude();
-    amp.setInput(env);
-    amps.push(amp);
+          var wave = new p5.Oscillator('triangle'); // wave going to be played
+          wave.amp(env);
 
-    var divId = divs[i].id; //dict ids
-    wave.freq(dict[divId]); //changed the actual ids to include 4 bc its easier for right now but can change back later
-    envs[divId] = env;
+          if (!isChrome) {
+            wave.start();
+          }
 
-    //mouse click on the div
-    divs[i].onmousedown = function() {
-      keyPress(this.id);
-    };
+          waves.push(wave);
+
+          var amp = new p5.Amplitude();
+          amp.setInput(env);
+          amps.push(amp);
+
+          var divId = divs[i].id; //dict ids
+          wave.freq(dict[divId]); //changed the actual ids to include 4 bc its easier for right now but can change back later
+          envs[divId] = env;
+
+          //mouse click on the div
+          divs[i].onmousedown = function () {
+              keyPress(this.id);
+          };
 
 
-  }
+      }
 }
 
 function draw() {
