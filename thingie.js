@@ -60,6 +60,7 @@ var waveType;
 
 var attackBlack, decayBlack, sustainBlack, releaseBlack;
 
+var isChrome = !!window.chrome && !!window.chrome.webstore;
 
 
 function setup() {
@@ -139,8 +140,6 @@ function setup() {
 
 
   divs = document.getElementById("keys").getElementsByTagName("div");
-
-  var isChrome = !!window.chrome && !!window.chrome.webstore;
 
       for (var i = 0; i < divs.length; i++) {
           divs[i].style.cursor = 'pointer';
@@ -244,17 +243,19 @@ document.onkeyup = function(event) {
 
 //returns which key was pressed
 function myKeyPress(e) {
-  var keynum;
-  if (window.event) { // IE
-    keynum = e.keyCode;
-  } else if (e.which) { // Netscape/Firefox/Opera
-    keynum = e.which;
-  }
+  if (!isChrome) {
+      var keynum;
+      if (window.event) { // IE
+          keynum = e.keyCode;
+      } else if (e.which) { // Netscape/Firefox/Opera
+          keynum = e.which;
+      }
 
-  var key = String.fromCharCode(keynum);
+      var key = String.fromCharCode(keynum);
 
-  if ((pressed.indexOf(key) == -1)) {
-    keyNote(key);
+      if ((pressed.indexOf(key) == -1)) {
+          keyNote(key);
+      }
   }
 }
 
